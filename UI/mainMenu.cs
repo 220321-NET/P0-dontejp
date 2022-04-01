@@ -62,6 +62,11 @@ public class mainMenu
         Console.WriteLine("Your Username is: " + username);
     }
 
+    private void testing()
+    {
+        //wooooot
+    }
+
 
 }
 
