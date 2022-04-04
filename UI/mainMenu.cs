@@ -1,5 +1,5 @@
 namespace UI;
-public class mainMenu
+class mainMenu
 {
 
     public void start()
@@ -53,7 +53,6 @@ public class mainMenu
             }
         }
     }
-
 
     private void signUp()
     {

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\DB\DB.csproj" />
+    <ProjectReference Include="..\DL\DL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

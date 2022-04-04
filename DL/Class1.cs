@@ -1,4 +1,4 @@
-﻿namespace DB;
+﻿namespace DL;
 public class Class1
 {
 
