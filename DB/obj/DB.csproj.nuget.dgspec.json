@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\Project0\\P0-dontejp\\DB\\DB.csproj": {}
+    "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\P0-dontejp\\DB\\DB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\Project0\\P0-dontejp\\DB\\DB.csproj": {
+    "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\P0-dontejp\\DB\\DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\Project0\\P0-dontejp\\DB\\DB.csproj",
+        "projectUniqueName": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\P0-dontejp\\DB\\DB.csproj",
         "projectName": "DB",
-        "projectPath": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\Project0\\P0-dontejp\\DB\\DB.csproj",
+        "projectPath": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\P0-dontejp\\DB\\DB.csproj",
         "packagesPath": "C:\\Users\\Rainbow Sherbert\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\Project0\\P0-dontejp\\DB\\obj\\",
+        "outputPath": "C:\\Users\\Rainbow Sherbert\\Documents\\Revature\\VSCodes\\P0-dontejp\\DB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rainbow Sherbert\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -19,6 +19,9 @@
         "originalTargetFrameworks": [
           "net6.0"
         ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
@@ -34,6 +37,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

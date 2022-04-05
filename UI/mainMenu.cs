@@ -1,7 +1,13 @@
+using DB;
+
 namespace UI;
 public class mainMenu
 {
-
+    private readonly DBRepository _repo;
+    public mainMenu(DBRepository repo)
+    {
+        _repo = repo;
+    }
     public void start()
     {
         introduction();
@@ -57,9 +63,35 @@ public class mainMenu
 
     private void signUp()
     {
-        Console.Write("What is your Username: ");
+        Console.WriteLine("Creating Profile");
+        Console.Write("Enter your Username: ");
         string? username= Console.ReadLine()?.ToLower();
+        Console.Write("Enter your balance: ");
+        string? b = Console.ReadLine();
+        int balance = Convert.ToInt32(b);
+
+        Customer customerToCreate = new Customer();
+
+        customerToCreate.Username = username;
         Console.WriteLine("Your Username is: " + username);
+        customerToCreate.Balance = balance;
+        Console.WriteLine("Your balance is : " + balance);
+
+        Customer createdCustomer = _repo.CreateCustomer(customerToCreate);
+
+        if (createdCustomer != null)
+        {
+            Console.WriteLine("Customer sucessfully created!");
+            Console.WriteLine(createdCustomer);
+        }
+
+
+        // List<Customer> customer =_repo.GetProfile();
+        // foreach(Customer c in customer )
+        // {
+        //     Console.WriteLine(c);
+        // }
+
     }
 
     private void testing()
