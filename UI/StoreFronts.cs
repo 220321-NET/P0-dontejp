@@ -3,11 +3,17 @@ namespace UI;
 
 public class StoreFronts
 {
-    //Customer currentCustomer = new Customer();
+    private readonly DBRepository __repo;
+
+    public StoreFronts(DBRepository _repo)
+    {
+        __repo = _repo;
+    }
     public void Start(Customer currentCustomer)
     {
         Console.WriteLine("Welcome to the Ninja hub "+ currentCustomer.Username + "             Balance: $" + currentCustomer.Balance);
         Welcome();
+        WelcomePrompt(currentCustomer);
     }
 
 //--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--
@@ -21,11 +27,11 @@ public class StoreFronts
         Console.WriteLine("{3} Hidden Sand Village");
         Console.WriteLine("{4} Hidden Mist Village");
         Console.WriteLine("{5} Hidden Stone Vilage");
-        WelcomePrompt();
     }
 
-    private void WelcomePrompt()
+    private void WelcomePrompt(Customer currentCustomer)
     {
+        Console.WriteLine("Which store would you like to enter?");
         string? a =Console.ReadLine();
         if(a != null)
         {
@@ -33,7 +39,8 @@ public class StoreFronts
             switch(answer)
             {
             case 1:
-                    //Enter Hidden Leaf Village
+                    leafVillage next = new leafVillage(__repo);
+                    next.Start();
                     break;
             case 2:
                     //Enter Hidden Cloud Village
@@ -49,13 +56,13 @@ public class StoreFronts
                     break;
             default:
                     Console.WriteLine("The value you entered is not one of the stores... \nTry again!");
-                    WelcomePrompt();
+                    WelcomePrompt(currentCustomer);
                     break;
             }
         }
     }
 
-    
+
 
 
 

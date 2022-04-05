@@ -56,4 +56,35 @@ public class DBRepository
         return customerToCreate;
     }
 
+    public List<Product> GetAllLeafProducts()
+    {
+        List<Product> allLeafProducts = new List<Product>();
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            
+            SqlCommand cmd = new SqlCommand("SELECT * FROM LeafInventory", connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                int price = reader.GetInt32(2);
+                int quantity = reader.GetInt32(3);
+
+                Product item = new Product{
+                        Id = id,
+                        Name = name,
+                        Price = price,
+                        Quantity = quantity
+                };
+                allLeafProducts.Add(item);
+            }
+            reader.Close();
+            connection.Close();
+
+            return allLeafProducts;
+
+    }
+
 }

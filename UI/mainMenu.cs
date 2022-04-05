@@ -48,6 +48,7 @@ public class mainMenu
                 if (uName != null)
                 {
                     login(uName);
+                    return;
                 }
                 Console.WriteLine("Invalid Username");
                 loginPage();
@@ -113,8 +114,8 @@ public class mainMenu
                 currentCustomer.Id = customer.Id;
                 currentCustomer.Username = customer.Username;
                 currentCustomer.Balance = customer.Balance;
-                StoreFronts next = new StoreFronts();
-                next.Start(currentCustomer);
+                StoreFronts StoreFronts = new StoreFronts(_repo);
+                StoreFronts.Start(currentCustomer);
             }
         }
     }
