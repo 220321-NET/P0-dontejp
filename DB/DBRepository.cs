@@ -80,11 +80,24 @@ public class DBRepository
                 };
                 allLeafProducts.Add(item);
             }
+
             reader.Close();
             connection.Close();
-
             return allLeafProducts;
+    }
 
+    public int getLeafProduct(int item)
+    {
+        Console.WriteLine("Item number is:" +item);
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand("Select Quantity FROM LeafInventory WHERE ProductID= @item", connection);
+
+            cmd.Parameters.AddWithValue("@item", item);
+            int quant = (int) cmd.ExecuteScalar();
+
+            connection.Close();
+            return quant;
     }
 
 }

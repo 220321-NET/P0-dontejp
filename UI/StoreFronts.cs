@@ -41,23 +41,23 @@ public class StoreFronts
             case 1:
                     leafVillage next = new leafVillage(__repo);
                     next.Start();
-                    break;
+                break;
             case 2:
                     //Enter Hidden Cloud Village
-                    break;
+                break;
             case 3:
                     //Enter Hidden Sand Village
-                    break;
+                break;
             case 4:
                     //Enter Hidden Mist Village
-                    break;
+                break;
             case 5:
                     //Enter Hidden Stone Vilage
-                    break;
+                break;
             default:
                     Console.WriteLine("The value you entered is not one of the stores... \nTry again!");
                     WelcomePrompt(currentCustomer);
-                    break;
+                break;
             }
         }
     }
