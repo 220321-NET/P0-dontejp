@@ -9,7 +9,7 @@ public class DBRepository
         _connectionString = connectionString;
     }
 
-    public List<Customer> GetProfile()
+    public List<Customer> GetAllCustomers()
     {
             List<Customer> allCustomers = new List<Customer>();
 

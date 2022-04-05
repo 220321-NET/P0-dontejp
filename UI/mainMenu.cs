@@ -43,7 +43,15 @@ public class mainMenu
 
             if(Char.ToUpper(answerC)== 'L')
             {
-                Console.WriteLine("Login");
+                Console.WriteLine("Enter your username: ");
+                string? uName = Console.ReadLine();
+                if (uName != null)
+                {
+                    login(uName);
+                }
+                Console.WriteLine("Invalid Username");
+                loginPage();
+                loginPagePrompt();
             }
 
             else if(Char.ToUpper(answerC) == 'S')
@@ -94,11 +102,21 @@ public class mainMenu
 
     }
 
-    private void testing()
+    private void login(string uName)
     {
-        //wooooot
+        Customer currentCustomer = new Customer();
+        List<Customer> allCustomers =_repo.GetAllCustomers();
+        foreach (Customer customer in allCustomers)
+        {
+            if (customer.Username == uName)
+            {
+                currentCustomer.Id = customer.Id;
+                currentCustomer.Username = customer.Username;
+                currentCustomer.Balance = customer.Balance;
+                StoreFronts next = new StoreFronts();
+                next.Start(currentCustomer);
+            }
+        }
     }
-
-
 }
 
