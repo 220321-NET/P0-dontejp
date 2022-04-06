@@ -2,11 +2,11 @@ using DB;
 
 namespace UI;
 
-public class leafVillage
+public class sandVillage
 {
     private readonly DBRepository ___repo;
 
-    public leafVillage(DBRepository __repo)
+    public sandVillage(DBRepository __repo)
     {
         ___repo = __repo;
     }
@@ -18,7 +18,7 @@ public class leafVillage
 
     private void Welcome()
     {
-    List<Product> product =___repo.GetAllLeafProducts();
+    List<Product> product =___repo.GetAllSandProducts();
         foreach(Product p in product )
         {
             Console.WriteLine(p);
@@ -40,7 +40,7 @@ public class leafVillage
                 string? i = Console.ReadLine();
                 int item = Convert.ToInt32(i);
 
-                int number = ___repo.getLeafProduct(item);
+                int number = ___repo.getSandProduct(item);
 
             tryagain:
                 Console.WriteLine("How many would you like to buy?: ");
@@ -50,7 +50,7 @@ public class leafVillage
                 if (number>buy)
                 {
                     int remaining = number - buy;
-                    ___repo.UpdateLeafInventory(item, remaining);
+                    ___repo.UpdateSandInventory(item, remaining);
                     Console.WriteLine(buy+ " items purchased "+remaining+ " remaining");
                 }
                 else if(number<buy)

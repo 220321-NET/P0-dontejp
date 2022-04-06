@@ -34,7 +34,6 @@ public class StoreFronts
         string? a =Console.ReadLine();
         if(a != null)
         {
-        //int answer = Convert.ToInt32(a);
             switch(a)
             {
             case "1":
@@ -42,17 +41,21 @@ public class StoreFronts
                     leaf.Start(currentCustomer);
                 goto reset;
             case "2":
-                    //Enter Hidden Cloud Village
-                break;
+                    cloudVillage cloud = new cloudVillage(__repo);
+                    cloud.Start(currentCustomer);
+                goto reset;
             case "3":
-                    //Enter Hidden Sand Village
-                break;
+                    sandVillage sand = new sandVillage(__repo);
+                    sand.Start(currentCustomer);
+                goto reset;
             case "4":
-                    //Enter Hidden Mist Village
-                break;
+                    mistVillage mist = new mistVillage(__repo);
+                    mist.Start(currentCustomer);
+                goto reset;
             case "5":
-                    //Enter Hidden Stone Vilage
-                break;
+                    stoneVillage stone = new stoneVillage(__repo);
+                    stone.Start(currentCustomer);
+                goto reset;
             default:
                     Console.WriteLine("The value you entered is not one of the stores... \nTry again!");
                 goto reset1;
