@@ -56,9 +56,23 @@ public class DBRepository
         return customerToCreate;
     }
 
+    public void UpdateInventory(int item, int remaining)
+    {
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        connection.Open();
+
+        using SqlCommand cmd = new SqlCommand("UPDATE LeafInventory SET Quantity=@remaining  WHERE ProductId=@item", connection);
+        cmd.Parameters.AddWithValue("@item", item);
+        cmd.Parameters.AddWithValue("@remaining", remaining);
+
+        cmd.ExecuteScalar();
+
+        connection.Close();
+    }
+
     public List<Product> GetAllLeafProducts()
     {
-        List<Product> allLeafProducts = new List<Product>();
+        List<Product> allProducts = new List<Product>();
 
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -78,26 +92,25 @@ public class DBRepository
                         Price = price,
                         Quantity = quantity
                 };
-                allLeafProducts.Add(item);
+                allProducts.Add(item);
             }
 
             reader.Close();
             connection.Close();
-            return allLeafProducts;
+            return allProducts;
     }
 
     public int getLeafProduct(int item)
     {
-        Console.WriteLine("Item number is:" +item);
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
             SqlCommand cmd = new SqlCommand("Select Quantity FROM LeafInventory WHERE ProductID= @item", connection);
 
             cmd.Parameters.AddWithValue("@item", item);
-            int quant = (int) cmd.ExecuteScalar();
+            int quantity = (int) cmd.ExecuteScalar();
 
             connection.Close();
-            return quant;
+            return quantity;
     }
 
 }

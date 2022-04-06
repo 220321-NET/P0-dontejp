@@ -10,7 +10,7 @@ public class leafVillage
     {
         ___repo = __repo;
     }
-    public void Start()
+    public void Start(Customer currentCustomer)
     {
         Welcome();
         CartPrompt();
@@ -27,6 +27,7 @@ public class leafVillage
 
     private void CartPrompt()
     {
+        tryagain1:
         Console.WriteLine("Would you like to buy something [Y/N]");
         string? answer = Console.ReadLine();
         if(answer != null)
@@ -38,33 +39,34 @@ public class leafVillage
                 Console.WriteLine("Enter the product Id you'd like to purchase");
                 string? i = Console.ReadLine();
                 int item = Convert.ToInt32(i);
-                switch(item)
+
+                int number = ___repo.getLeafProduct(item);
+
+            tryagain:
+                Console.WriteLine("How many would you like to buy?: ");
+                string? b = Console.ReadLine();
+                int buy = Convert.ToInt32(b);
+
+                if (number>buy)
                 {
-                    case 1:
-                            int number = ___repo.getLeafProduct(item);
-                            Console.WriteLine(number);
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        break;
+                    int remaining = number - buy;
+                    ___repo.UpdateInventory(item, remaining);
+                }
+                else if(number<buy)
+                {
+                    Console.WriteLine("There is not enough of that product to complete your purchase...");
+                    goto tryagain;
                 }
             }
             else if(Char.ToUpper(answerC) == 'N')
             {
-                
+                return;
             }
-
+            else
+            {
+                Console.WriteLine("Invalid input... Try again!");
+                goto tryagain1;
+            }
         }
-
-
     }
-
-
 }
