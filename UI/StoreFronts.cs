@@ -29,6 +29,7 @@ public class StoreFronts
         Console.WriteLine("{3} Hidden Sand Village");
         Console.WriteLine("{4} Hidden Mist Village");
         Console.WriteLine("{5} Hidden Stone Vilage");
+        Console.WriteLine("\nEnter a number!\n");
     reset1:
         Console.WriteLine("Which store would you like to enter?");
         string? a =Console.ReadLine();

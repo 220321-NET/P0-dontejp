@@ -42,7 +42,6 @@ public class stoneVillage
 
                 int number = ___repo.getStoneProduct(item);
 
-            tryagain:
                 Console.WriteLine("How many would you like to buy?: ");
                 string? b = Console.ReadLine();
                 int buy = Convert.ToInt32(b);
@@ -56,7 +55,7 @@ public class stoneVillage
                 else if(number<buy)
                 {
                     Console.WriteLine("There is not enough of that product to complete your purchase...");
-                    goto tryagain;
+                    goto tryagain1;
                 }
             }
             else if(Char.ToUpper(answerC) == 'N')

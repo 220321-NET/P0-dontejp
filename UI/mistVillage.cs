@@ -36,13 +36,13 @@ public class mistVillage
 
             if(Char.ToUpper(answerC) == 'Y')
             {
+            
                 Console.WriteLine("Enter the product Id you'd like to purchase");
                 string? i = Console.ReadLine();
                 int item = Convert.ToInt32(i);
 
                 int number = ___repo.getMistProduct(item);
 
-            tryagain:
                 Console.WriteLine("How many would you like to buy?: ");
                 string? b = Console.ReadLine();
                 int buy = Convert.ToInt32(b);
@@ -56,7 +56,7 @@ public class mistVillage
                 else if(number<buy)
                 {
                     Console.WriteLine("There is not enough of that product to complete your purchase...");
-                    goto tryagain;
+                    goto tryagain1;
                 }
             }
             else if(Char.ToUpper(answerC) == 'N')
