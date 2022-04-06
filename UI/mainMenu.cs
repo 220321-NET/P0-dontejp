@@ -11,8 +11,10 @@ public class mainMenu
     public void start()
     {
         introduction();
+        here:
         loginPage();
         loginPagePrompt();
+        goto here;
     }   
 //--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--
 //--<>--<>--<>--<>--<>--<>--<>--<>--            All Methods           --<>--<>--<>--<>--<>--<>--<>--<>--
@@ -48,11 +50,9 @@ public class mainMenu
                 if (uName != null)
                 {
                     login(uName);
+                    Console.WriteLine("Username does not exist. Try signing up!");
                     return;
                 }
-                Console.WriteLine("Invalid Username");
-                loginPage();
-                loginPagePrompt();
             }
 
             else if(Char.ToUpper(answerC) == 'S')
@@ -118,6 +118,7 @@ public class mainMenu
                 StoreFronts.Start(currentCustomer);
             }
         }
+        return;
     }
 }
 
