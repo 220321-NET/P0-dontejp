@@ -1,4 +1,5 @@
 using DB;
+using Models;
 
 namespace UI;
 public class mainMenu
@@ -105,8 +106,9 @@ public class mainMenu
 
     private void login(string uName)
     {
+        string tablename = "Users";
         Customer currentCustomer = new Customer();
-        List<Customer> allCustomers =_repo.GetAllCustomers();
+        List<Customer> allCustomers =_repo.GetAllCustomers(tablename);
         foreach (Customer customer in allCustomers)
         {
             if (customer.Username == uName)

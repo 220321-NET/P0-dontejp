@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using Models;
+
 
 namespace DB;
 public class DBRepository
@@ -9,14 +11,16 @@ public class DBRepository
         _connectionString = connectionString;
     }
 
-    public List<Customer> GetAllCustomers()
+    public List<Customer> GetAllCustomers(string tablename)
     {
             List<Customer> allCustomers = new List<Customer>();
 
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
             
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Users", connection);
+            string sql = String.Format("SELECT * FROM {0}", tablename);
+            SqlCommand cmd = new SqlCommand(sql, connection);
+
             SqlDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
             {
@@ -58,12 +62,14 @@ public class DBRepository
 //--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--
 //--<>--<>--<>--<>--<>--<>--<>--<>--            Leaf Tables           --<>--<>--<>--<>--<>--<>--<>--<>--
 //--<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>----<>--<>--<>--<>--<>--<>--<>--<>--
-    public void UpdateLeafInventory(int item, int remaining)
+    public void UpdateInventory(int item, int remaining, string tablename)
     {
         using SqlConnection connection = new SqlConnection(_connectionString);
         connection.Open();
 
-        using SqlCommand cmd = new SqlCommand("UPDATE LeafInventory SET Quantity=@remaining  WHERE ProductId=@item", connection);
+        string sql = String.Format("Update {0} SET Quantity=@remaining WHERE ProductId=@item", tablename);
+
+        using SqlCommand cmd = new SqlCommand(sql, connection);
         cmd.Parameters.AddWithValue("@item", item);
         cmd.Parameters.AddWithValue("@remaining", remaining);
 

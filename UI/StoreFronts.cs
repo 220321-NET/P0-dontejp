@@ -1,4 +1,6 @@
 using DB;
+using Models;
+
 namespace UI;
 
 public class StoreFronts

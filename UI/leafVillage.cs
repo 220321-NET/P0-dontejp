@@ -1,5 +1,5 @@
 using DB;
-
+using Models;
 namespace UI;
 
 public class leafVillage
@@ -18,6 +18,7 @@ public class leafVillage
 
     private void Welcome()
     {
+    
     List<Product> product =___repo.GetAllLeafProducts();
         foreach(Product p in product )
         {
@@ -48,8 +49,9 @@ public class leafVillage
 
                 if (number>buy)
                 {
+                    string tablename = "LeafInventory";
                     int remaining = number - buy;
-                    ___repo.UpdateLeafInventory(item, remaining);
+                    ___repo.UpdateInventory(item, remaining, tablename);
                     Console.WriteLine(buy+ " items purchased "+remaining+ " remaining");
                 }
                 else if(number<buy)
