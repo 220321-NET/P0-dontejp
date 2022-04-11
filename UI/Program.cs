@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using BL;
 using DB; 
 using UI;
 
@@ -12,6 +13,8 @@ DBRepository repo = new DBRepository(connectionString);
 // {
 //     Console.WriteLine(c);
 // }
-var mainMenu = new mainMenu(repo);
+IP0BL bl = new P0BL(repo);
+
+var mainMenu = new mainMenu(bl);
 mainMenu.start();
 

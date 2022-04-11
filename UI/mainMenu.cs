@@ -1,12 +1,11 @@
-using DB;
 
 namespace UI;
 public class mainMenu
 {
-    private readonly DBRepository _repo;
-    public mainMenu(DBRepository repo)
+    protected readonly IP0BL _bl;
+    public mainMenu(IP0BL bl)
     {
-        _repo = repo;
+        _bl = bl;
     }
     public void start()
     {
@@ -86,7 +85,7 @@ public class mainMenu
         customerToCreate.Balance = balance;
         Console.WriteLine("Your balance is : " + balance);
 
-        Customer createdCustomer = _repo.CreateCustomer(customerToCreate);
+        Customer createdCustomer = _bl.CreateCustomer(customerToCreate);
 
         if (createdCustomer != null)
         {
@@ -103,10 +102,11 @@ public class mainMenu
 
     }
 
-    private void login(string uName)
+    public void login(string uName)
     {
+        string tablename = "Users";
         Customer currentCustomer = new Customer();
-        List<Customer> allCustomers =_repo.GetAllCustomers();
+        List<Customer> allCustomers =_bl.GetAllCustomers(tablename);
         foreach (Customer customer in allCustomers)
         {
             if (customer.Username == uName)
@@ -114,7 +114,7 @@ public class mainMenu
                 currentCustomer.Id = customer.Id;
                 currentCustomer.Username = customer.Username;
                 currentCustomer.Balance = customer.Balance;
-                StoreFronts StoreFronts = new StoreFronts(_repo);
+                StoreFronts StoreFronts = new StoreFronts(_bl);
                 StoreFronts.Start(currentCustomer);
             }
         }

@@ -1,31 +1,34 @@
 using DB;
-
+using BL;
+using Models;
 namespace UI;
 
-public class leafVillage
+public class leafVillage: StoreFronts
 {
-    private readonly DBRepository ___repo;
+    protected int VillageID;
 
-    public leafVillage(DBRepository __repo)
+    public leafVillage(IP0BL bl): base(bl)
     {
-        ___repo = __repo;
+
     }
-    public void Start(Customer currentCustomer)
+    public virtual void Start()
     {
+        VillageID = 1;
         Welcome();
         CartPrompt();
     }
 
-    private void Welcome()
+    protected void Welcome()
     {
-    List<Product> product =___repo.GetAllLeafProducts();
+    
+    List<Product> product =_bl.GetInventory(VillageID);
         foreach(Product p in product )
         {
             Console.WriteLine(p);
         }
     }
 
-    private void CartPrompt()
+    protected void CartPrompt()
     {
         tryagain1:
         Console.WriteLine("Would you like to buy something [Y/N]");
@@ -40,19 +43,19 @@ public class leafVillage
                 string? i = Console.ReadLine();
                 int item = Convert.ToInt32(i);
 
-                int number = ___repo.getLeafProduct(item);
+                int number = _bl.GetProduct(item,VillageID);
 
                 Console.WriteLine("How many would you like to buy?: ");
                 string? b = Console.ReadLine();
                 int buy = Convert.ToInt32(b);
 
-                if (number>buy)
+                if (number>=buy && buy >0)
                 {
                     int remaining = number - buy;
-                    ___repo.UpdateLeafInventory(item, remaining);
+                    _bl.UpdateInventory(item, remaining, VillageID);
                     Console.WriteLine(buy+ " items purchased "+remaining+ " remaining");
                 }
-                else if(number<buy)
+                else if(number< buy)
                 {
                     Console.WriteLine("There is not enough of that product to complete your purchase...");
                     goto tryagain1;

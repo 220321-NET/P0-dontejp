@@ -1,4 +1,4 @@
-namespace DB;
+namespace Models;
 
 public class Customer
 {
